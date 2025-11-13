@@ -2,6 +2,12 @@
 const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
 
+
+// middleware/authMiddleware.js
+// const jwt = require('jsonwebtoken');
+// const Admin = require('../models/Admin');
+const User = require('../models/User');
+
 exports.protect = async (req, res, next) => {
   let token;
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -9,6 +15,49 @@ exports.protect = async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       req.admin = await Admin.findById(decoded.id).select('-password');
+      next();
+    } catch (error) {
+      res.status(401).json({ message: 'Not authorized, token failed' });
+    }
+  }
+  if (!token) {
+    res.status(401).json({ message: 'Not authorized, no token' });
+  }
+};
+
+
+// Middleware to protect ADMIN routes
+exports.protectAdmin = async (req, res, next) => {
+  let token;
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    try {
+      token = req.headers.authorization.split(' ')[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.admin = await Admin.findById(decoded.id).select('-password');
+      if (!req.admin) {
+        return res.status(401).json({ message: 'Not authorized, admin not found' });
+      }
+      next();
+    } catch (error) {
+      res.status(401).json({ message: 'Not authorized, token failed' });
+    }
+  }
+  if (!token) {
+    res.status(401).json({ message: 'Not authorized, no token' });
+  }
+};
+
+// Middleware to protect USER routes
+exports.protectUser = async (req, res, next) => {
+  let token;
+  if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
+    try {
+      token = req.headers.authorization.split(' ')[1];
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = await User.findById(decoded.id).select('-password');
+      if(!req.user){
+        return res.status(401).json({ message: 'Not authorized, user not found' });
+      }
       next();
     } catch (error) {
       res.status(401).json({ message: 'Not authorized, token failed' });

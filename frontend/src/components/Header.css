@@ -42,3 +42,8 @@
 .logout-button:hover {
     background: #c0392b;
 }
+
+.welcome-user {
+    color: #bdc3c7;
+    margin-left: 1.5rem;
+}
