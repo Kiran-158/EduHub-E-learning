@@ -1,0 +1,42 @@
+/* src/pages/HomePage.css */
+.home-container {
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.home-container h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.home-container p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 3rem;
+}
+
+.category-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.category-link {
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    padding: 2rem 3rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.category-link:hover {
+    background-color: #2980b9;
+    transform: translateY(-5px);
+}
+
+.category-link h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}

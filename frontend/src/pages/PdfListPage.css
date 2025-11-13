@@ -1,0 +1,66 @@
+/* src/pages/PdfListPage.css */
+.pdf-list-container {
+    padding: 2rem 0;
+}
+
+.pdf-list-container h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+    text-transform: capitalize;
+}
+
+.pdf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.pdf-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pdf-card h3 {
+    margin-top: 0;
+    color: #34495e;
+    word-break: break-word;
+}
+
+.button-group {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn {
+    text-decoration: none;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    text-align: center;
+    flex-grow: 1;
+    transition: background-color 0.3s ease;
+}
+
+.view-btn {
+    background-color: #27ae60;
+}
+
+.view-btn:hover {
+    background-color: #229954;
+}
+
+.download-btn {
+    background-color: #3498db;
+}
+
+.download-btn:hover {
+    background-color: #2980b9;
+}
